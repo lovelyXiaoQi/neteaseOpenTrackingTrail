@@ -1,0 +1,48 @@
+{
+  "materials": {
+    "version": "1.0.0",
+
+    "open_knife_light:entity_nocull": {
+      "vertexShader": "shaders/glsl/open_knife_light_vertex.glsl",
+      "fragmentShader": "shaders/glsl/open_knife_light_fragment.glsl",
+
+      "+states": [ 
+        "Blending"
+      ],
+      "vertexFields": [
+        {
+          "field": "Position"
+        },
+        {
+          "field": "BoneId0"
+        },
+        {
+          "field": "Normal"
+        },
+        {
+          "field": "UV0"
+        }
+      ]
+    },
+
+    "open_knife_light_bloom:entity_nocull": {
+      "vertexShader": "shaders/glsl/open_knife_light_vertex.glsl",
+      "fragmentShader": "shaders/glsl/open_knife_light_fragment.glsl",
+      "+defines": [ "BLOOM" ],
+      "vertexFields": [
+        {
+          "field": "Position"
+        },
+        {
+          "field": "BoneId0"
+        },
+        {
+          "field": "Normal"
+        },
+        {
+          "field": "UV0"
+        }
+      ]
+    }
+  }
+}

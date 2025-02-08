@@ -1,0 +1,19 @@
+{
+    "open_knife_light": {
+        "animation": {
+
+        },
+        "dy_load": false,
+        "material": [
+            "open_knife_light"
+        ],
+        "material_cpu": [
+
+        ],
+        "mesh": "mesh/open_knife_light_mesh.json",
+        "skeleton": "skeleton/open_knife_light_skeleton.json",
+        "texture": {
+            "tex0": "open_knife_light"
+        }
+    }
+}

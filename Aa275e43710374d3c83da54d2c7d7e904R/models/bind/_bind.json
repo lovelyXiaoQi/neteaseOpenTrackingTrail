@@ -1,0 +1,80 @@
+{
+    "version": "1.2.0",
+    "description": {
+        "file_type": "bind",
+        "model": "",
+        "model_type": ""
+    },
+    "model": {
+        "": {
+            "bind": {
+                "default": {
+                    "body": {
+                        "effect": {
+                            "": {
+                                "bind_effect": [
+                                    {
+                                        "path": "effects/UnitedStateOfSmash/Smash_Dragon_Dirt_Ground.json",
+                                        "visible": true,
+                                        "type": "particle",
+                                        "delay": 0
+                                    },
+                                    {
+                                        "path": "effects/UnitedStateOfSmash/Smash_Wind_Dirt.json",
+                                        "visible": true,
+                                        "type": "particle",
+                                        "delay": 0
+                                    },
+                                    {
+                                        "path": "effects/UnitedStateOfSmash/Smash_Wind_Round.json",
+                                        "visible": true,
+                                        "type": "particle",
+                                        "delay": 0
+                                    },
+                                    {
+                                        "path": "effects/UnitedStateOfSmash/Smash_Dragon_Wind.json",
+                                        "visible": true,
+                                        "type": "particle",
+                                        "delay": 0
+                                    }
+                                ],
+                                "bind_model": [],
+                                "bind_offset": [0, 0, 0],
+                                "bind_rotate": [0, 0, 0]
+                            }
+                        }
+                    },
+                    "right_arm": {
+                        "effect": {
+                            "": {
+                                "bind_effect": [
+                                    {
+                                        "path": "effects/NewPerfectDefense.json",
+                                        "visible": true,
+                                        "type": "particle",
+                                        "delay": 0
+                                    }
+                                ],
+                                "bind_model": [],
+                                "bind_offset": [0, 0, 0],
+                                "bind_rotate": [0, 0, 0]
+                            }
+                        }
+                    }
+                }
+            },
+            "animation": {
+                "": "default"
+            },
+            "sounds": {
+                "default": []
+            },
+            "animation_speed": {}
+        }
+    },
+    "editor": {
+        "show": {
+            "default": true
+        }
+    }
+}
