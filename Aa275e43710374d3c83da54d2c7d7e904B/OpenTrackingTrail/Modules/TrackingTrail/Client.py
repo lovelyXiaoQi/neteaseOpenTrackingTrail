@@ -69,6 +69,9 @@ class BaseKnifeLightEffect:
         self.default_length = self.binderArgs["length"] * 30
 
     def FreeModel(self):
+        if not clientApi.GetEngineCompFactory().CreateGame(levelId).HasEntity(self.entityId):
+            self._modelPool.freeAllModel()
+            self.knifeList = []
         if len(self.knifeList) > 1:
             self.length -= max(1, self.default_length*0.01)
             self.default_length -= max(1, self.default_length*0.01)
@@ -83,6 +86,10 @@ class BaseKnifeLightEffect:
         POOL_ListenForEvent("OnScriptTickClient", self.FreeModel)
 
     def createKnifeFrag(self):
+        if not clientApi.GetEngineCompFactory().CreateGame(levelId).HasEntity(self.entityId):
+            self._modelPool.freeAllModel()
+            self.knifeList = []
+            return 
         self.length = int(self.default_length*clientApi.GetEngineCompFactory().CreateGame(levelId).GetFps() * 0.007)
         oldList = copy(self.knifeList)
         newList = list()
@@ -90,11 +97,24 @@ class BaseKnifeLightEffect:
         locator_pos_end = self.boneObj.getBonePos(self.boneObj.locators[1])
         rx, ry = self.binderArgs["rotate"]
         mx, my, mz = locator_pos_end[0]-locator_pos_begin[0], locator_pos_end[1]-locator_pos_begin[1], locator_pos_end[2]-locator_pos_begin[2]
+        Orx, Ory = clientApi.GetRotFromDir((mx, my, mz))
+        nmx = mx * math.cos(math.radians(-Ory)) - mz * math.sin(math.radians(-Ory))
+        nmz = mx * math.sin(math.radians(-Ory)) + mz * math.cos(math.radians(-Ory))
+        mx, my, mz = nmx, my, nmz
+        nmz = mz * math.cos(math.radians(Orx)) - my * math.sin(math.radians(Orx))
+        nmy = mz * math.sin(math.radians(Orx)) + my * math.cos(math.radians(Orx))
+        mx, my, mz = mx, nmy, nmz
         nmz = mz * math.cos(math.radians(rx)) - my * math.sin(math.radians(rx))
         nmy = mz * math.sin(math.radians(rx)) + my * math.cos(math.radians(rx))
         mx, my, mz = mx, nmy, nmz
         nmx = mx * math.cos(math.radians(ry)) - mz * math.sin(math.radians(ry))
         nmz = mx * math.sin(math.radians(ry)) + mz * math.cos(math.radians(ry))
+        mx, my, mz = nmx, my, nmz
+        nmz = mz * math.cos(math.radians(-Orx)) - my * math.sin(math.radians(-Orx))
+        nmy = mz * math.sin(math.radians(-Orx)) + my * math.cos(math.radians(-Orx))
+        mx, my, mz = mx, nmy, nmz
+        nmx = mx * math.cos(math.radians(Ory)) - mz * math.sin(math.radians(Ory))
+        nmz = mx * math.sin(math.radians(Ory)) + mz * math.cos(math.radians(Ory))
         mx, my, mz = nmx, my, nmz
         locator_pos_end = locator_pos_begin[0] + mx, locator_pos_begin[1] + my, locator_pos_begin[2] + mz
         length = self.getLength(locator_pos_begin, locator_pos_end)
